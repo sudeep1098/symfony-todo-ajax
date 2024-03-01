@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="css/auth.css">
+{% endblock %}
+{% block body %}
+
+	<form method="post">
+
+		<div class="container  d-flex justify-content-center align-items-center min-vh-100">
+			<div class="row border rounded-5 p-3 bg-white shadow box-area">
+				<div class="col-12 col-lg-6 left-box rounded-4 d-flex justify-content-center align-items-center flex-column" style="background-color:#40A2E3">
+					<div class="featured-image mb-3">
+						<img src="images/login-page2" class="img-fluid" width="350px" alt="">
+					</div>
+					<p class="text-white fs-2">Be verified</p>
+				</div>
+				<div class="col-12 col-lg-6  right-box">
+					<div class="row align-items-center">
+						<div class="header-text mb-4 d-flex justify-content-center flex-column align-items-center mt-md-2">
+							<h2>Hello,Again</h2>
+							<p>We are happy to have you back</p>
+						</div>
+						<div class="input-group mb-3">
+							<input type="email" value="{{ last_username }}" placeholder="Enter your Email" name="email" id="inputEmail" class="form-control form-control-lg bg-light fs-6" autocomplete="email" required autofocus>
+						</div>
+						<div class="input-group mb-1">
+							<input type="password" name="password" id="inputPassword" placeholder="Enter your Password" class="form-control form-control-lg bg-light fs-6" autocomplete="current-password" required>
+						</div>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						<div class="input-group mb-5 d-flex justify-content-between"></div>
+						<div class="input-group mb-3">
+							<button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
+						</div>
+
+						<div class="row">
+							<small>Don't have an account?
+								<a href="/register">Sign up</a>
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}

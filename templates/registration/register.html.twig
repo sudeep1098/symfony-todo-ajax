@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="css/auth.css">
+{% endblock %}
+{% block body %}
+
+
+	{{ form_errors(registrationForm) }}
+			{{ form_start(registrationForm) }}
+
+	<div class="container  d-flex justify-content-center align-items-center min-vh-100">
+		<div class="row border rounded-5 p-3 bg-white shadow box-area">
+			<div class="col-12 col-lg-6 col-lg-6  left-box rounded-4 d-flex justify-content-center align-items-center flex-column" style="background-color:#40A2E3">
+				<div class="featured-image mb-3">
+					<img src="images/login-page2" class="img-fluid" width="350px" alt="">
+				</div>
+				<p class="text-white fs-2">Be verified</p>
+			</div>
+
+			<div class="col-12 col-lg-6  right-box">
+				<div class="row align-items-center">
+					<div class="header-text mb-4">
+						<h2>Nice to meet you</h2>
+						<p>We are happy to have you</p>
+					</div>
+					<div class="input-group mb-3">
+						{{ form_row(registrationForm.email,{'attr':{'class':'form-control form-control-lg bg-light fs-6','placeholder':"Enter your Email"}}) }}
+					</div>
+					<div class="input-group mb-1">
+						{{ form_row(registrationForm.plainPassword, {
+                                    label: 'Password',
+                                    'attr':{
+                                        'class':"form-control form-control-lg bg-light fs-6",
+                                        'placeholder':'Enter your password',
+                                    }
+                                }) }}
+
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<div class="input-group mb-5 d-flex justify-content-between">
+						<div class="form-check">
+							{{ form_row(registrationForm.agreeTerms) }}
+					
+						</div>
+						<div class="forgot">
+							<small>
+								<a href="#">Forgot Password</a>
+							</small>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Register</button>
+					</div>
+
+					<div class="row">
+						<small>Don't have an account?
+							<a href="/login">Login</a>
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ form_end(registrationForm) }}
+{% endblock %}

@@ -1,0 +1,37 @@
+<div class="modal fade" id="donenotemodal" tabindex="-1" aria-labelledby="notemodalLabel" aria-hidden="true">
+	<div class="modal-dialog ">
+		<div class="modal-content">
+			<div class="modal-body bg-primary">
+				<div class="my-5">
+					<div class="row bg-primary text-light p-2 rounded-top align-items-center">
+						<h1 class="text-center mb-4">Done Note</h1>
+						{{ form_start(doneform) }}
+						<div class="row align-items-center">
+							<div class="col-xl-12 col-md-12 my-1 text-center">
+								{{ form_label(doneform.title) }}
+							</div>
+							<div class="col-xl-12 col-md-12 my-1 text-center">
+								{{ form_widget(doneform.title) }}
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-xl-12 col-md-12 my-1 text-center">
+								{{ form_label(doneform.description) }}
+							</div>
+							<div class="col-xl-12 col-md-12 my-1 text-center">
+								{{ form_widget(doneform.description) }}
+							</div>
+						</div>
+
+						<div class="col-xl-12 mt-3 col-md-12 text-center">
+							<button type="submit" class="btn btn-warning">Add Done Note</button>
+						</div>
+						{{ form_end(doneform) }}
+					</div>
+					<button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

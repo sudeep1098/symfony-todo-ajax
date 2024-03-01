@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	TodoList
+{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block body %}
+
+
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand">ToDoList</a>
+			{% if app.user %}
+				<div class="text-light">
+					You are logged in as
+					<span class="text-primary">
+						{{ app.user.userIdentifier }}
+					</span>
+				</div>
+				<a class="btn btn-danger" href="{{ path('app_logout') }}">Logout</a>
+			{% else %}
+				<div class="text-light">
+					<a class="btn btn-primary" href="{{ path('app_register') }}">Register</a>
+					<a class="btn btn-success" href="{{ path('app_login') }}">Login</a>
+				</div>
+
+			{% endif %}
+
+		</div>
+	</nav>
+
+	{% for message in app.flashes('message') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+	<div class="container my-5">
+		<div class="row bg-danger text-light border border-top-2 border-black  align-items-center">
+			<div class="col col-lg-5 col-md-12 bg-success py-2">
+				<h3 class="d-inline-block">Progress</h3>
+
+				<button type="button" class="btn btn-primary p-1 px-2 float-end" data-bs-toggle="modal" data-bs-target="#notemodal">
+					+
+				</button>
+
+
+				<div class="row">
+
+					{% for item in formData %}
+
+						<div class="col-md-12 col-{{item.id}} d-flex align-items-center justify-content-around">
+							<input type="checkbox" name="done" id="{{ item.id }}" class="checkbox">
+							<div class="d-flex flex-column">
+								<span class="text-dark mx-1">Title-</span>
+								<span class="text-dark mx-1">Description-</span>
+							</div>
+							<div class="d-flex flex-column flex-grow-1">
+								<span>{{ item.title }}</span>
+								<span>{{ item.description }}</span>
+							</div>
+							<div>
+								<button class="btn btn-info p-1 py-0 edit mx-1" data-id="{{ item.id }}" data-bs-toggle="modal" data-bs-target="#editnotemodal" type="button">Edit</button>
+								<button class="btn btn-danger p-1 py-0 delete mx-1" id="{{item.id}}" type="button">Delete</button>
+							</div>
+						</div>
+
+					{% endfor %}
+
+				</div>
+
+
+			</div>
+
+			<div class="col col-lg-3 col-md-12 bg-dark pt-2" id="done">
+			<button type="button" class="btn btn-primary p-1 px-2 float-end" id="done" data-bs-toggle="modal" data-bs-target="#donenotemodal">
+					+
+				</button>
+				<h3>Done</h3>
+				<ul></ul>
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class="col col-lg-4 col-md-12 bg-danger pt-2">
+					<h3>Archive</h3>
+					<button type="button" class="btn btn-primary p-1 px-2 float-end" data-bs-toggle="modal" data-bs-target="#notemodal">
+					+
+				</button>
+					<ul>
+						<li>
+							helo
+						</li>
+						<li>
+							helo
+						</li>
+						<li>
+							helo
+						</li>
+					</ul>
+				</div>
+			{% else %}
+				<div class="col col-lg-4 col-md-4 bg-danger pt-2">
+					<h5>
+						Archive Available for Admins only
+					</h5>
+				</div>
+			{% endif %}
+		</div>
+		{% include 'note_modal.html.twig' %}
+		{% include 'edit_modal.html.twig' %}
+		{% include 'done-modal.html.twig' %}
+
+	</div>
+{% endblock %}
